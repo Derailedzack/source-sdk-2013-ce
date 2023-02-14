@@ -8,7 +8,7 @@ $Configuration
 	$General
 	{
 		// Request a specific compiler toolset.
-		$PlatformToolset "v142"
+		$PlatformToolset "v143"
 	}
 
 	$General
@@ -30,6 +30,7 @@ $Configuration
 		// warning C4838: conversion requires a narrowing conversion
 		// warning C4456-4459: variable shadowing. TODO: fix those!
 		$DisableSpecificWarnings	"$BASE;4316;4838;4456;4457;4458;4459" [$VS2013]
+		$DisableSpecificWarnings	"$BASE;4201;4471;4530;5054;5055" [$VS2013]
 
 		// Having lots of warnings makes it harder to notice new, and possibly
 		// important warnings, both on buildbot and in the output window. Lots
@@ -52,5 +53,7 @@ $Configuration
 		// Strip unreferenced inline functions from object files to shrink .obj files and .lib files,
 		// improve linker speed, and improve conformance. Requires VS 2013 Update 3
 		$AdditionalOptions	"$BASE /Zc:inline" [$VS2013]
+		
+		$AdditionalOptions	"$BASE /std:c++20" [$VS2013]
 	}
 }

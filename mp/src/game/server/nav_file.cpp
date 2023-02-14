@@ -1315,6 +1315,7 @@ const CUtlVector< Place > *CNavMesh::GetPlacesFromNavFile( bool *hasUnnamedPlace
 		}
 	}
 	
+#ifndef SDK2013CE
 	if ( IsX360() )
 	{
 		// 360 has compressed NAVs
@@ -1326,6 +1327,7 @@ const CUtlVector< Place > *CNavMesh::GetPlacesFromNavFile( bool *hasUnnamedPlace
 			fileBuffer.AssumeMemory( pOriginalData, originalSize, originalSize, CUtlBuffer::READ_ONLY );
 		}
 	}
+#endif
 
 	// check magic number
 	unsigned int magic = fileBuffer.GetUnsignedInt();
@@ -1407,6 +1409,7 @@ NavErrorType CNavMesh::Load( void )
 		}
 	}
 
+#ifndef SDK2013CE
 	if ( IsX360() )
 	{
 		// 360 has compressed NAVs
@@ -1418,6 +1421,7 @@ NavErrorType CNavMesh::Load( void )
 			fileBuffer.AssumeMemory( pOriginalData, originalSize, originalSize, CUtlBuffer::READ_ONLY );
 		}
 	}
+#endif
 
 	// check magic number
 	unsigned int magic = fileBuffer.GetUnsignedInt();
