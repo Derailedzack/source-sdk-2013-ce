@@ -62,7 +62,7 @@ ifeq ($(CLANG_BUILD),1)
 	CXXFLAGS = $(BASE_CFLAGS) -std=gnu++0x -Wno-c++11-narrowing -Wno-dangling-else $(ENV_CXXFLAGS)
 else
         # !!! ABI COMPAT: -fabi-compat-version=2 is needed to generate the proper symbols for linking
-	CXXFLAGS = $(BASE_CFLAGS) -std=gnu++0x -fpermissive -fabi-compat-version=2 $(ENV_CXXFLAGS)
+	CXXFLAGS = $(BASE_CFLAGS) -std=gnu++17 -fpermissive -fabi-compat-version=2 $(ENV_CXXFLAGS)
         # Diagnostics coloring
 	CXXFLAGS += -fdiagnostics-color=always
 endif
@@ -83,7 +83,7 @@ COPY_DLL_TO_SRV = 0
 # http://linux.die.net/man/1/ld and http://fedoraproject.org/wiki/Releases/FeatureBuildId.http://fedoraproject.org/wiki/Releases/FeatureBuildId
 LDFLAGS += -Wl,--build-id
 
-GCC_VER =
+GCC_VER = -9
 P4BIN = p4
 CRYPTOPPDIR=ubuntu12_32
 
@@ -165,8 +165,8 @@ else
 	# pentium4 = MMX, SSE, SSE2 - no SSE3 (added in prescott) # -msse3 -mfpmath=sse
 	ARCH_FLAGS += -m32 -march=$(MARCH_TARGET) -mtune=core2 $(SSE_GEN_FLAGS)
 	LD_SO = ld-linux.so.2
-	LIBSTDCXX := $(shell $(CXX) $(ARCH_FLAGS) -print-file-name=libstdc++.so)
-	LIBSTDCXXPIC := $(shell $(CXX) $(ARCH_FLAGS) -print-file-name=libstdc++.so)
+	LIBSTDCXX := $(shell $(CXX) $(ARCH_FLAGS) -print-file-name=libstdc++.so.6)
+	LIBSTDCXXPIC := $(shell $(CXX) $(ARCH_FLAGS) -print-file-name=libstdc++.so.6)
 	LDFLAGS += -m32
 endif
 
